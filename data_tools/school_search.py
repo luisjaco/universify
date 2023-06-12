@@ -1,3 +1,4 @@
+
 def search(data):
     print("\nWELCOME TO LUIS' COLLEGE FINDER!\n")
     key, term = None, None

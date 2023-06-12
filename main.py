@@ -1,4 +1,4 @@
-from school_search import search
+from data_tools.school_search import search
 import json
 
 with open('data_files/us_schools.json') as jsonfile:
