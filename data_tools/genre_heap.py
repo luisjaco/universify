@@ -106,8 +106,18 @@ def edit_heap(school_dictionary, element):
     else:
         add_genre(heap, genre_list, element)
 
+def get_top_three(heap):
+    # If heap does not have three genres in it, its empty
+    if len(heap) < 2:
+        return [None, None, None]
+    else:
+        if heap[2]['score'] > heap[3]['score']:
+            return [ heap[1], heap[2], heap[3] ]
+        else:
+            return [ heap[1], heap[3], heap[2] ]
+
 # Function for testing, ignore if ur not Luis.
-def testing():
+def _testing():
     sample_heap = [
         None,
         {
@@ -167,3 +177,7 @@ def testing():
     print("V3")
     update_heap(sample_heap, sample_genre_list, update1)
     print_items(sample_heap, sample_genre_list)
+
+    i = get_top_three(sample_heap)
+    for j in i:
+        print(j)
