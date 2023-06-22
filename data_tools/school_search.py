@@ -1,14 +1,8 @@
 # This file is for functions relating to searching through the json data to find a vaild school.
-import json
+from time import sleep
 
-def school_search(data=None):
+def school_search(data):
     print("\n************      SCHOOL SEARCH      ************\n")
-
-    # If no valid data is given, data will be taken from the following file
-    if data is None:
-        with open('data_files/school_genre_data.json') as jsonfile:
-            data = json.load(jsonfile)
-    
     # Asking the user how they would like to search for a school. The function will loop until a valid key is found.
     term, key = None, None
     while True:
@@ -24,19 +18,20 @@ def school_search(data=None):
             term = input("What is the zip code you're searching with?: ")
             key = 'zip'
             if not term.isnumeric():
-                print("\nNon-valid zip found, please try again...\n")
+                print("\nInvalid zip found, please try again...\n")
                 continue
             else:
                 break
         else:
-            print("\nNon-valid key found, please try again...\n")
+            print("\nInvalid response found, please try again...\n")
             continue
-        
+
     # Searches for school in data file, prints all found schools
     # We keep track of the found ids, and if anything was found in general.
     found = False
     found_ids = set()
     print("\n************    COMMENCING SEARCH    ************\n")
+    sleep(.5)
     for item in data['schools']:
         # Prints out all found data
         if item[key] == term and not found:
@@ -58,28 +53,34 @@ def school_search(data=None):
             if choice == 'N':
                 return restart(data)
             elif choice.isnumeric() and int(choice) in found_ids:
+                sleep(.5)
                 # Displays the chosen colleges information
                 selected_data = data['schools'][int(choice)]
-                print("""
-    Here is your selected schools data:
+                print("""\nHere is your selected schools data:
+
     Name:       {}
     Zip:        {}
     State:      {}
     Website:    {}
                 """.format(selected_data['name'], selected_data['zip'], selected_data['state'], selected_data['website']))
-                prompt = input("""What would you like to do?
+                while True:
+                    prompt = input("""What would you like to do?
 0 - Select school
 1 - Search again
 2 - Quit program
 """)
-                if prompt == '0':
-                    return int(choice)
-                elif prompt == '1':
-                    return school_search(data)
-                else:
-                    quit()
+                    if prompt == '0':
+                        return int(choice)
+                    elif prompt == '1':
+                        return school_search(data)
+                    elif prompt == '2':
+                        end()
+                    else:
+                        print("\nInvalid response found, please try again...\n")
+                        continue
+
             else:
-                print("\nNon-valid response found, please try again...\n")
+                print("\nInvalid response found, please try again...\n")
 
 # Handles whether the user wants to try searching again or quit the program.
 def restart(data):
@@ -91,4 +92,8 @@ What would you like to do?
     if prompt == '0':
         return school_search(data)
     else:
-        quit()
+        end()
+
+def end():
+    print("\nThank you for using Universify. Have a great day! :)\n")
+    quit()

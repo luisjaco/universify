@@ -2,16 +2,18 @@
 # a dictionary for each genre. This dictionary will hold values as follows:
 # {
 #   "genre" : genre name
-#   "score" : 'score' of genre, measure of popularity
+#   "score" : 'score' of genre
 #   "freshman_score" : score of freshmen only
 #   "sophomore_score" : score of sophomores only
 #   "junior_score" : score of juniors only
 #   "senior_score" : score of seniors only
 #   "graduate_score" : score of graduates only
+#   "unknown_score" : score of those who do not choose to identify
 # }
 # with the heap looking like: [{genre data}, {genre data}].
 # This file holds functions to upkeep the heap, add to a heap, and retrieve the max.
 
+# TODO handle when there are less than three genres.
 
 def parent(pos): 
     return pos//2
@@ -63,7 +65,7 @@ def add_genre(heap, genre_list, element):
         current = len(heap)-1
         genre_list[element['genre']] = current
         # Loops while current genre has a higher score than its parent, and swaps genres.
-        while (heap[current]['score'] > heap[parent(current)]['score']):
+        while (parent(current) > 0 and heap[current]['score'] > heap[parent(current)]['score']):
             
             heap = swap(heap, genre_list, current, parent(current))
             current = parent(current)
@@ -80,6 +82,8 @@ def update_heap(heap, genre_list, element):
     heap[pos]['sophomore_score'] += element['sophomore_score']
     heap[pos]['junior_score'] += element['junior_score']
     heap[pos]['senior_score'] += element['senior_score']
+    heap[pos]['graduate_score'] += element['graduate_score']
+    heap[pos]['unknown_score'] += element['unknown_score']
     # Heapifies-up to keep the heap.
     maxHeapify(heap, genre_list)
 

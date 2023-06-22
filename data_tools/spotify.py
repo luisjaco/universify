@@ -1,11 +1,7 @@
 # This file is for spotipy functions.
-import sys
 import os
-import json
-from json.decoder import JSONDecodeError
 import spotipy
-import webbrowser
-import spotipy.util as util
+from time import sleep
 
 def spotify_sequence():
     print("\n************ENTERING SPOTIFY SEQUENCE************\n")
@@ -20,6 +16,11 @@ def spotify_sequence():
         try:
             # This will prompt the user twice if it does not work the first time.
             token = spotipy.prompt_for_user_token(username, scope)
+            # For this program, the user should have redo authentication each time they use the program, so I delete the cache if it exists.
+            try:
+                os.remove(f'.cache-{username}')
+            except:
+                pass
             break
         except:
             # Given an error occurs, the user has to keep trying until a valid token is recieved.
@@ -32,7 +33,8 @@ def spotify_sequence():
 
     sp_obj = spotipy.Spotify(auth=token)
     name = sp_obj.current_user()['display_name']
-    print('Welcome ' + name.strip() + "! We are currently finding your top three genres based on your favorite artists...")
+    sleep(.5)
+    print('\nWelcome ' + name.strip() + "! We are currently finding your top three genres based on your favorite artists...")
 
     # Displaying to the user what the calculated top genres are.
     top_three = get_top_three_genres_artists(sp_obj)
@@ -48,12 +50,7 @@ def spotify_sequence():
                 print(valid_genres[i], end=' and ')
             else:
                 print(valid_genres[i],end=', ')
-            
-    # For this program, the user should have to input their username each time they use the program, so I delete the cache if it exists.
-    try:
-        os.remove(f'.cache-{username}')
-    except:
-        pass
+    print()
 
     # Returns top three to where this was called
     return top_three
@@ -87,6 +84,3 @@ def get_top_three_genres_artists(sp_obj):
         index += 1
 
     return top_three
-
-
-# USER ID: q818wih5cs74e1c0zi50c5kv0
