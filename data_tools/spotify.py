@@ -1,16 +1,21 @@
-# This file is for spotipy functions.
+# This file uses spotipy to authenticate the user and then find the users top genres.
 import os
 import spotipy
 from time import sleep
 
 def spotify_sequence():
-    print("\n************ENTERING SPOTIFY SEQUENCE************\n")
-
+    print("\n************ENTERING SPOTIFY SEQUENCE************")
+    print("""
+We are going to access your Spotify data, first we will ask your username (can be found in Spotify settings).
+We will then open a window in your browser to continue Spotify authentication. Once you authenticate your Spotify
+account online, copy the link you are redirected to and paste it back into the program.
+""")
     # Setting scope of the program for user authentication.
     scope = "user-top-read"
     
     while True:
         # Grabbing username to do all spotify api functions.
+
         username = input("Please input your spotify username: ")
         # Using spotipy to handle grabbing authentication.
         try:
@@ -25,14 +30,33 @@ def spotify_sequence():
         except:
             # Given an error occurs, the user has to keep trying until a valid token is recieved.
             print("\n************     AN ERROR OCCURED    ************\n")
-            print("Something went wrong with finding your account, please try again.\n")
             try:
                 os.remove(f'.cache-{username}')
             except:
                 pass
+            while True:
+                choice = input("""What would you like to do?
+0 - Try again
+1 - Quit
+""")
+                if choice == '0':
+                    print()
+                    break
+                elif choice == '1':
+                    print("\nThank you for using Universify. Have a great day! :)\n")
+                    raise ValueError
+                else:
+                    print("\nInvalid response found, please try again...\n")
+                    continue
 
     sp_obj = spotipy.Spotify(auth=token)
-    name = sp_obj.current_user()['display_name']
+    # Catching user dashboard error (user was not manually input into the program by me.)
+    try:
+        name = sp_obj.current_user()['display_name']
+    except:
+        print("\nAn error occured with obtaining your data, the owner of this program must manually enter your account\ninto the spotify api for a user to be able to use their user data.")
+        print("\nThank you for using Universify. Have a great day! :)\n")
+        raise ValueError
     sleep(.5)
     print('\nWelcome ' + name.strip() + "! We are currently finding your top three genres based on your favorite artists...")
 
@@ -52,7 +76,6 @@ def spotify_sequence():
                 print(valid_genres[i],end=', ')
     print()
 
-    # Returns top three to where this was called
     return top_three
 
 def get_top_three_genres_artists(sp_obj):

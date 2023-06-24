@@ -21636,19 +21636,19 @@
                 null,
                 {
                     "genre": "rap",
-                    "score": 6000,
+                    "score": 14000,
                     "freshman_score": 0,
-                    "sophomore_score": 4000,
+                    "sophomore_score": 8000,
                     "junior_score": 0,
                     "senior_score": 0,
-                    "graduate_score": 0,
-                    "unknown_score": 2000
+                    "graduate_score": 2000,
+                    "unknown_score": 4000
                 },
                 {
                     "genre": "trap",
-                    "score": 4500,
+                    "score": 7500,
                     "freshman_score": 0,
-                    "sophomore_score": 3000,
+                    "sophomore_score": 6000,
                     "junior_score": 0,
                     "senior_score": 0,
                     "graduate_score": 0,
@@ -21656,19 +21656,41 @@
                 },
                 {
                     "genre": "canadian hip hop",
-                    "score": 3000,
+                    "score": 5000,
                     "freshman_score": 0,
-                    "sophomore_score": 2000,
+                    "sophomore_score": 4000,
                     "junior_score": 0,
                     "senior_score": 0,
                     "graduate_score": 0,
+                    "unknown_score": 1000
+                },
+                {
+                    "genre": "melodic rap",
+                    "score": 3000,
+                    "freshman_score": 0,
+                    "sophomore_score": 0,
+                    "junior_score": 0,
+                    "senior_score": 0,
+                    "graduate_score": 1500,
+                    "unknown_score": 1500
+                },
+                {
+                    "genre": "brooklyn drill",
+                    "score": 2000,
+                    "freshman_score": 0,
+                    "sophomore_score": 0,
+                    "junior_score": 0,
+                    "senior_score": 0,
+                    "graduate_score": 1000,
                     "unknown_score": 1000
                 }
             ],
             "genre_positions": {
                 "rap": 1,
                 "trap": 2,
-                "canadian hip hop": 3
+                "canadian hip hop": 3,
+                "melodic rap": 4,
+                "brooklyn drill": 5
             }
         },
         {

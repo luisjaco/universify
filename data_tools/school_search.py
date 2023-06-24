@@ -11,11 +11,11 @@ def school_search(data):
 1 - ZIP Code
 """)
         if choice == '0':
-            term = input("Which state are you searching?: ").upper()
+            term = input("\nWhich state are you searching?: ").upper()
             key = 'state'
             break
         elif choice == '1':
-            term = input("What is the zip code you're searching with?: ")
+            term = input("\nWhat is the zip code you're searching with?: ")
             key = 'zip'
             if not term.isnumeric():
                 print("\nInvalid zip found, please try again...\n")
@@ -56,7 +56,7 @@ def school_search(data):
                 sleep(.5)
                 # Displays the chosen colleges information
                 selected_data = data['schools'][int(choice)]
-                print("""\nHere is your selected schools data:
+                print("""\nHere is the selected schools data:
 
     Name:       {}
     Zip:        {}
@@ -84,16 +84,20 @@ def school_search(data):
 
 # Handles whether the user wants to try searching again or quit the program.
 def restart(data):
-    prompt = input("""
+    while True:
+        prompt = input("""
 What would you like to do?
 0 - Search again
 1 - Quit program
 """)
-    if prompt == '0':
-        return school_search(data)
-    else:
-        end()
+        if prompt == '0':
+            school_search(data)
+        elif prompt == '1':
+            end()
+        else:
+            print("\nInvalid response found, please try again...\n")
+            continue
 
 def end():
     print("\nThank you for using Universify. Have a great day! :)\n")
-    quit()
+    raise ValueError

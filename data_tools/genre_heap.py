@@ -11,9 +11,7 @@
 #   "unknown_score" : score of those who do not choose to identify
 # }
 # with the heap looking like: [{genre data}, {genre data}].
-# This file holds functions to upkeep the heap, add to a heap, and retrieve the max.
-
-# TODO handle when there are less than three genres.
+# This file holds functions to upkeep the genre heap, add to a genre heap, and retrieve the top genres.
 
 def parent(pos): 
     return pos//2
@@ -111,77 +109,15 @@ def edit_heap(school_dictionary, element):
         add_genre(heap, genre_list, element)
 
 def get_top_three(heap):
-    # If heap does not have three genres in it, its empty
-    if len(heap) < 2:
+    # If heap does not have three genres in it, it should be empty
+    if len(heap) == 1:
         return [None, None, None]
+    elif len(heap) == 2:
+        return [ heap[1], None, None ]
+    elif len(heap) == 3:
+        return [ heap[1], heap[2], None ]
     else:
         if heap[2]['score'] > heap[3]['score']:
             return [ heap[1], heap[2], heap[3] ]
         else:
             return [ heap[1], heap[3], heap[2] ]
-
-# Function for testing, ignore if ur not Luis.
-def _testing():
-    sample_heap = [
-        None,
-        {
-            "genre" : 'pop',
-            "score" : 9000,
-            "freshman_score" : 2000,
-            "sophomore_score" : 7000,
-            "junior_score" : 0,
-            "senior_score" : 0,
-            "graduate_score" : 0
-        },
-    ]
-
-    sample_genre_list = {
-        'pop' : 1
-    }
-
-    addition1 = {
-            "genre" : 'rock',
-            "score" : 5000,
-            "freshman_score" : 1000,
-            "sophomore_score" : 1000,
-            "junior_score" : 0,
-            "senior_score" : 0,
-            "graduate_score" : 2000
-        }
-    addition2 = {
-            "genre" : 'rap',
-            "score" : 11000,
-            "freshman_score" : 9000,
-            "sophomore_score" : 1000,
-            "junior_score" : 0,
-            "senior_score" : 0,
-            "graduate_score" : 1000
-        }
-
-    add_genre(sample_heap, sample_genre_list, addition1)
-
-    # print("V1")
-    # print_items(sample_heap, sample_genre_list)
-
-
-    add_genre(sample_heap, sample_genre_list, addition2)
-    # print("V2")
-    # print_items(sample_heap, sample_genre_list)
-
-    update1 = {
-            "genre" : 'pop',
-            "score" : 100000,
-            "freshman_score" : 50000,
-            "sophomore_score" : 0,
-            "junior_score" : 0,
-            "senior_score" : 0,
-            "graduate_score" : 50000
-        }
-
-    print("V3")
-    update_heap(sample_heap, sample_genre_list, update1)
-    print_items(sample_heap, sample_genre_list)
-
-    i = get_top_three(sample_heap)
-    for j in i:
-        print(j)
