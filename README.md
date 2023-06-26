@@ -1,15 +1,17 @@
 # universify
-the beginning of a spotify api project, by luis jaco.
-school data origin: https://www.kaggle.com/datasets/yashgpt/us-college-data (thank you kaggle.)
-the data was heavily stripped and then reformated into json by me.
-thank you to anyone who sees this <3
+Welcome to Universify! A program made by Luis Jaco.
 
 Universify is a program for viewing and adding top genre data for specific schools using the Spotify API.
-Use your personal Spotify account to view your top genres and add them to your schools data.
 
-* currently i do not verify that you actually go to the school so just be a honest person ok.
-* if you would like to see an example of this program you can look for the school 
-* NEW YORK INSTITUTE OF TECHNOLOGY (state: ny, zip: 11568, id: 1966)
+Features:
+- View different schools genre data (top genres).
+- View genres stats per grade (for example: freshman, seniors).
+- Add your top three genres to a schools data (using your Spotify account).
 
-* DUE TO MY SPOTIFY APPLICATION BEING DEVELOPMENTAL, I HAVE TO MANUALLY ENTER ANYONE WHO USES THIS APPLICATION TO ADD DATA.
-* IF YOU ARE SOMEONE WHO WOULD LIKE TO USE THIS APPLICATION YOU CAN CONTACT ME AT: LUISJACOO04@GMAIL.COM
+This is my first full project, feedback is heavily appreciated!
+
+* Due to the way the Spotify API works, a small project like this cannot be used without manual entry into a system which allows other Spotify users to use this program. If you are interested in using the 'adding data' portion of this program for yourself you can contact me at luisjacoo04@gmail.com
+
+* If you would like to see an example of the data portion of this program you can look for the school: NEW YORK INSTITUTE OF TECHNOLOGY (state: ny, zip: 11568, id: 1966) (my school and data).
+
+* Where I got the list of schools: https://www.kaggle.com/datasets/yashgpt/us-college-data (thank you kaggle.) the data was heavily edited and then reformated into json by me.

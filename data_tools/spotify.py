@@ -20,7 +20,7 @@ account online, copy the link you are redirected to and paste it back into the p
         # Using spotipy to handle grabbing authentication.
         try:
             # This will prompt the user twice if it does not work the first time.
-            token = spotipy.prompt_for_user_token(username, scope)
+            token = spotipy.prompt_for_user_token(username, scope, client_id='0d1b9c4a7a014ca39a5e89bb94bb0abb', client_secret='b48a3dc363be48ad878e3741256b2208', redirect_uri='https://localhost:8888/callback')
             # For this program, the user should have redo authentication each time they use the program, so I delete the cache if it exists.
             try:
                 os.remove(f'.cache-{username}')

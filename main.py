@@ -345,6 +345,9 @@ Here is the in-depth data for {genre['genre']}...
 
 # For looping the program or exiting.
 def end_prompt():
+    '''
+    does something
+    '''
     while True:
         choice = input("""What would you like to do?
 0 - Start Universify again
